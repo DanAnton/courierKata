@@ -10,7 +10,7 @@ namespace CourierKata.Primary.Adapters.Implementation
         public OrdersAdapter(IOrdersService service) 
             => _service = service;
 
-        public IEnumerable<OrderItem> GetOrdersReport(OrderCart cart)
+        public OrdersReport GetOrdersReport(OrderCart cart)
             => _service.GetOrdersReport(cart);
     }
 }

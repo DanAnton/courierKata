@@ -3,6 +3,7 @@ using System.Linq;
 using CourierKata.Domain.Implementation;
 using CourierKata.Primary.Ports.DataContracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 
 namespace CourierKata.Tests
 {
@@ -18,6 +19,30 @@ namespace CourierKata.Tests
         [TestMethod]
         public void GivenOrderItems_GetOrdersReport_ThenShouldReturnOrdersReport()
         {
+            //Arrange
+            var expectedResult = new OrdersReport
+                                 {
+                                     Items = new List<OrderItem>
+                                             {
+                                                 new OrderItem
+                                                 {
+                                                     Type = ProductType.SmallParcel.ToString(),
+                                                     Cost = 120
+                                                 },
+                                                 new OrderItem
+                                                 {
+                                                     Type = ProductType.MediumParcel.ToString(),
+                                                     Cost = 240
+                                                 },
+                                                 new OrderItem
+                                                 {
+                                                     Type = ProductType.XlParcel.ToString(),
+                                                     Cost = 75
+                                                 }
+                                             },
+                                     Total = 435.0
+                                 };
+
             // Act
             var result = _service.GetOrdersReport(new OrderCart
                                                   {
@@ -25,13 +50,25 @@ namespace CourierKata.Tests
                                                                  {
                                                                      new Product
                                                                      {
-                                                                         Type = "Small",
+                                                                         Dimension = 10,
                                                                          Quantity = 30
+                                                                     },
+                                                                     new Product
+                                                                     {
+                                                                         Dimension = 2.4,
+                                                                         Quantity = 40
+                                                                     },
+                                                                     new Product
+                                                                     {
+                                                                         Dimension = 100,
+                                                                         Quantity = 3
                                                                      }
                                                                  }
                                                   });
             //Assert
-            Assert.IsTrue(result.Any());
+            Assert.IsTrue(JsonConvert.SerializeObject(result.Items.OrderBy(r => r.Type).ToList())
+                                     .Equals(JsonConvert.SerializeObject(expectedResult.Items.OrderBy(r => r.Type))) &&
+                          result.Total.Equals(expectedResult.Total));
         }
     }
 }

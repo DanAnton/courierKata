@@ -5,6 +5,6 @@ namespace CourierKata.Primary.Ports.OperationContracts
 {
     public interface IOrdersAdapter: IBaseAdapter
     {
-        IEnumerable<OrderItem> GetOrdersReport(OrderCart cart);
+        OrdersReport GetOrdersReport(OrderCart cart);
     }
 }

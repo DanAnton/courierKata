@@ -16,7 +16,7 @@ namespace CourierKata.Api.Controllers
             => _ordersAdapter = ordersAdapter;
 
         [HttpPost]
-        public IEnumerable<OrderItem> Post([FromBody] OrderCart cart)
+        public OrdersReport Post([FromBody] OrderCart cart)
             => _ordersAdapter.GetOrdersReport(cart);
 
     }

@@ -2,8 +2,15 @@
 {
     public class Product
     {
-        public string Type { get; set; }
-
+        public double Dimension { get; set; }
         public int Quantity { get; set; }
+    }
+
+    public enum ProductType
+    {
+        SmallParcel,
+        MediumParcel,
+        LargeParcel,
+        XlParcel
     }
 }
