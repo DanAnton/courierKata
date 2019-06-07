@@ -1,0 +1,18 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/CourierKata/.vs/CourierKata/v16
+/CourierKata/CourierKata/obj
+/CourierKata/CourierKata.Api/obj
+/CourierKata/CourierKata.Domain/obj
+/CourierKata/CourierKata.Primary.Adapters/obj
+/CourierKata/CourierKata.Primary.Ports/obj
+/CourierKata/CourierKata.Api/bin/Debug/netcoreapp2.2
+/CourierKata/.vs/CourierKata/DesignTimeBuild
+/CourierKata/CourierKata.Domain/bin/Debug/netcoreapp2.2
+/CourierKata/CourierKata.Primary.Adapters/bin/Debug/netcoreapp2.2
+/CourierKata/CourierKata.Primary.Ports/bin/Debug/netcoreapp2.2
+/CourierKata/CourierKata.Tests/bin/Debug/netcoreapp2.2
+/CourierKata/CourierKata.Tests/obj
