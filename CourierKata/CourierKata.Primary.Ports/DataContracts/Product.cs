@@ -4,6 +4,7 @@
     {
         public double Dimension { get; set; }
         public int Quantity { get; set; }
+        public double WeightPerItem { get; set; }
     }
 
     public enum ProductType

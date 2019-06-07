@@ -71,7 +71,7 @@ namespace CourierKata.Tests
                           result.Total.Equals(expectedResult.Total));
         }
 
-         [TestMethod]
+        [TestMethod]
         public void GivenOrderItems_GetOrdersReportWithSpeedyShipping_ThenShouldReturnOrdersReportWithSpeedyShipping()
         {
             //Arrange
@@ -125,6 +125,62 @@ namespace CourierKata.Tests
                                                                      }
                                                                  },
                                                       HasSpeedyDeliver = true
+                                                  });
+            //Assert
+            Assert.IsTrue(JsonConvert.SerializeObject(result.Items.OrderBy(r => r.Type).ToList())
+                                     .Equals(JsonConvert.SerializeObject(expectedResult.Items.OrderBy(r => r.Type))) &&
+                          result.Total.Equals(expectedResult.Total));
+        }
+
+        [TestMethod]
+        public void GivenOrderItems_GetOrdersReportWithExtraWeight_ThenShouldReturnOrdersReportWithExtraWeight()
+        {
+            //Arrange
+            var expectedResult = new OrdersReport
+                                 {
+                                     Items = new List<OrderItem>
+                                             {
+                                                 new OrderItem
+                                                 {
+                                                     Type = ProductType.SmallParcel.ToString(),
+                                                     Cost = 120
+                                                 },
+                                                 new OrderItem
+                                                 {
+                                                     Type = ProductType.MediumParcel.ToString(),
+                                                     Cost = 540
+                                                 },
+                                                 new OrderItem
+                                                 {
+                                                     Type = ProductType.XlParcel.ToString(),
+                                                     Cost = 75
+                                                 }
+                                             },
+                                     Total = 735.0 
+                                 };
+
+            // Act
+            var result = _service.GetOrdersReport(new OrderCart
+                                                  {
+                                                      Products = new List<Product>
+                                                                 {
+                                                                     new Product
+                                                                     {
+                                                                         Dimension = 10,
+                                                                         Quantity = 30,
+                                                                         WeightPerItem = 5
+                                                                     },
+                                                                     new Product
+                                                                     {
+                                                                         Dimension = 2.4,
+                                                                         Quantity = 40
+                                                                     },
+                                                                     new Product
+                                                                     {
+                                                                         Dimension = 100,
+                                                                         Quantity = 3
+                                                                     }
+                                                                 }
                                                   });
             //Assert
             Assert.IsTrue(JsonConvert.SerializeObject(result.Items.OrderBy(r => r.Type).ToList())
