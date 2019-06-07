@@ -10,9 +10,9 @@ namespace CourierKata.Domain.Implementation
         public OrdersReport GetOrdersReport(OrderCart cart)
         {
             var result = new Dictionary<ProductType, double>();
-            cart.Products.ToList().ForEach(p => AddValuesToDictionary(result, p));
+            cart.Products.ToList().ForEach(p => BuildOrdersDictionary(result, p));
 
-            return new OrdersReport
+            var ordersReport = new OrdersReport
                    {
                        Items = result.Select(p => new OrderItem
                                                   {
@@ -21,9 +21,23 @@ namespace CourierKata.Domain.Implementation
                                                   }).ToList(),
                        Total = result.Values.Sum()
                    };
+            if (!cart.HasSpeedyDeliver) return ordersReport;
+            
+            AddSpeedyShipping(ordersReport);
+            return ordersReport;
         }
 
-        private static void AddValuesToDictionary(Dictionary<ProductType, double> result, Product p)
+        private static void AddSpeedyShipping(OrdersReport ordersReport)
+        {
+            ordersReport.Items.Add(new OrderItem
+                                   {
+                                       Type = "Speedy shipping",
+                                       Cost = ordersReport.Total
+                                   });
+            ordersReport.Total += ordersReport.Total;
+        }
+
+        private static void BuildOrdersDictionary(Dictionary<ProductType, double> result, Product p)
         {
             var type = ProductType.SmallParcel;
             var price = 3.0;
