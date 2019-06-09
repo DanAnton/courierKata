@@ -6,7 +6,7 @@ namespace CourierKata.Domain
 {
     public static class ServiceCollectionExtensions
     {
-        public static void AddDomain(this IServiceCollection services) 
+        public static void AddDomain(this IServiceCollection services)
             => services.AddScoped<IOrdersService, OrdersService>();
     }
 }

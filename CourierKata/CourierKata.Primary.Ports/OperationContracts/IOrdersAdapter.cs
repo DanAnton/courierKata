@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using CourierKata.Primary.Ports.DataContracts;
+﻿using CourierKata.Primary.Ports.DataContracts;
 
 namespace CourierKata.Primary.Ports.OperationContracts
 {
-    public interface IOrdersAdapter: IBaseAdapter
+    public interface IOrdersAdapter : IBaseAdapter
     {
         OrdersReport GetOrdersReport(OrderCart cart);
     }

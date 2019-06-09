@@ -110,9 +110,7 @@ namespace CourierKata.Domain.Implementation
                 ComputeDiscountsInternal(filteredOrdersReport, discounts, 5, OrderItemType.MixedParcelMania);
             }
 
-            foreach (var discount in discounts) {
-                ordersReport.Items.Add(discount);
-            }
+            foreach (var discount in discounts) ordersReport.Items.Add(discount);
         }
 
         private static void ComputeDiscountsInternal(IEnumerable<OrderItem> orderItems,
