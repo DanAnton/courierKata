@@ -5,6 +5,6 @@ namespace CourierKata.Primary.Ports.DataContracts
     public class OrderCart
     {
         public IList<Product> Products { get; set; }
-        public bool HasSpeedyDeliver { get; set; }
+        public bool HasFastDeliver { get; set; }
     }
 }

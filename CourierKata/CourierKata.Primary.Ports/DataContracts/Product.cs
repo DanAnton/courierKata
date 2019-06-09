@@ -6,12 +6,4 @@
         public int Quantity { get; set; }
         public double WeightPerItem { get; set; }
     }
-
-    public enum ProductType
-    {
-        SmallParcel,
-        MediumParcel,
-        LargeParcel,
-        XlParcel
-    }
 }

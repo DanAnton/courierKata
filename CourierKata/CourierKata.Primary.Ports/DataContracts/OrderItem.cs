@@ -2,8 +2,23 @@
 {
     public class OrderItem
     {
-        public string Type { get; set; }
+        public OrderItemType Type { get; set; }
 
         public double Cost { get; set; }
+
+        public int Quantity { get; set; }
+    }
+
+    public enum OrderItemType
+    {
+        SmallParcel,
+        MediumParcel,
+        LargeParcel,
+        XlParcel,
+        HeavyParcel,
+        FastShipping,
+        SmallParcelMania,
+        MediumParcelMania,
+        MixedParcelMania
     }
 }
